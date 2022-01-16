@@ -1,10 +1,9 @@
 import queue
 import heapq
 
-
-# Time: 1hr 4min
+# Time: 1hr 9min
 # Part 1: 30min
-# Part 2: 34min
+# Part 2: 39min
 
 def basin(matrix):
     basinSizes = []
