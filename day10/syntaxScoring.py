@@ -4,13 +4,13 @@
 
 
 def partTwo(input):
-    pairing = {
+    opening = {
         ")": "(",
         "]": "[",
         "}": "{",
         ">": "<"
     }
-    reverse_pairing = {
+    closing = {
         "(": ")",
         "[": "]",
         "{": "}",
@@ -23,25 +23,21 @@ def partTwo(input):
         corrupted = False
         stack = []
         for char in line:
-            if char in pairing.keys():
-                prev_char = stack.pop(len(stack) - 1)
-                if prev_char != pairing[char]:
-                    # print(f'line {i}: Expected {pairing[char]}, but found {prev_char}')
-                    corrupted = True
-                    break
-            else:
+            if char in closing:
                 stack.append(char)
+            elif stack.pop(len(stack) -1) != opening[char]:
+                # print(f'line {i}: Expected {opening[char]}, but found {prev_char}')
+                corrupted = True
+                break
+
         if corrupted:
             continue
 
-        compl = ""
-        while len(stack) != 0:
-            compl += reverse_pairing[stack.pop(len(stack) -1)]
-
         compl_score = 0
-        for char in compl:
-            compl_score *= 5
-            compl_score += scoring[char]
+        while len(stack) != 0:
+            compl = closing[stack.pop(len(stack) -1)]
+            compl_score = compl_score * 5 + scoring[compl]
+
         # print(f'line {i}: Score: {compl_score}, string: {compl}')
         scores.append(compl_score)
 
@@ -50,7 +46,7 @@ def partTwo(input):
 
 
 def partOne(input):
-    pairing = {
+    opening = {
         ")": "(",
         "]": "[",
         "}": "{",
@@ -61,15 +57,12 @@ def partOne(input):
     for i, line in enumerate(input):
         stack = []
         for char in line:
-            if char in pairing.keys():
-                prev_char = stack.pop(len(stack) - 1)
-                if prev_char != pairing[char]:
-                    count[char] = count.get(char, 0) + 1
-                    # print(f'line {i}: Expected {pairing[char]}, but found {prev_char}')
-                    # input.pop(i) will not work (skips next line when popped)
-                    break
-            else:
+            if char not in opening:
                 stack.append(char)
+            elif stack.pop(len(stack) -1) != opening[char]:
+                count[char] = count.get(char, 0) + 1
+                # print(f'line {i}: Expected {opening[char]}, but found {prev_char}')
+                break
 
     scoring = { ")": 3, "]": 57, "}": 1197, ">": 25137 }
 
