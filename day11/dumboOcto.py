@@ -4,17 +4,14 @@
 import copy
 
 
-def partTwo(input):
-    matrix = input
-    sizeOfMatrix = (len(matrix[0]) * len(matrix))
+def partTwo(matrix):
     R = len(matrix)
     C = len(matrix[0])
+    sizeOfMatrix = R * C
 
     i = 0
     while True:
         i += 1
-        # print(f'Iteration: {i}')
-        printMatrix(matrix)
 
         # iteration without flashing
         for x in range(R):
@@ -27,12 +24,13 @@ def partTwo(input):
                 if matrix[x][y] > 9:
                     increaseAdj(matrix, x, y)
 
+        # print(f'Iteration: {i}')
+        # printMatrix(matrix)
         if sum([x.count(0) for x in matrix]) == sizeOfMatrix:
             return i
 
 
-def partOne(input, t):
-    matrix = input
+def partOne(matrix, t):
     countFlashes = 0
     R = len(matrix)
     C = len(matrix[0])
@@ -80,15 +78,15 @@ def printMatrix(matrix):
     print("==================")
 
 
-input = []
+matrix = []
 for x in open("input.txt", 'r'):
     x = x.rstrip("\n")
     line = []
     for y in x:
         line.append(int(y))
-    input.append(line)
+    matrix.append(line)
 
-input2 = copy.deepcopy(input)
-# different object input since each function modifies grid
-print(f'Part One: {partOne(input, 100)}')
-print(f'Part Two: {partTwo(input2)}')
+matrix2 = copy.deepcopy(matrix)
+# ^ different object matrix since each function modifies grid
+print(f'Part One: {partOne(matrix, 100)}')
+print(f'Part Two: {partTwo(matrix2)}')
