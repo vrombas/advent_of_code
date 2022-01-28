@@ -1,5 +1,12 @@
-def read_planned_course(filename):
-    return [x.strip('\n').split(' ') for x in open(filename, 'r')]
+from collections import deque, defaultdict
 
-def read_file(filename):
-    return [x.strip('\n') for x in open(filename, 'r')]
+def partOne(input):
+    print(input)
+    return None
+
+def partTwo(input):
+    return None
+input = []
+
+print(partOne(input))
+print(partTwo(input))
