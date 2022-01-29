@@ -13,6 +13,7 @@ def partOne(input, direction):
                 if (y < v):
                     G2.add((x,y))
                 else:
+                    # case where y==v is included here
                     G2.add((x, v-(y-v)))
         else:
             assert d == "x"
