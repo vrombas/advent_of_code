@@ -32,4 +32,4 @@ for t in range(1, steps+1):
         print(f'At step {t}: {max(letter_count.values()) - min(letter_count.values())}')
 
 # I really need to do something about my input and output for these
-# switch back and forth between test.txt and input.txt have cost me so much time
+# switch back and forth between test.txt and input.txt has cost me so much time
