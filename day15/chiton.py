@@ -28,8 +28,10 @@ def UCS(G, n_tiles):
         if (x == R*n_tiles-1 and y == C*n_tiles-1):
             return total_risk - G[0][0]
 
-        # if it's never been visited or if a better path is available
-        if distG[x][y] is None or total_risk < distG[x][y]:
+
+        # or total_risk < distG[x][y] is unneeded since the PQ ensures that the node with
+        # the lowest risk is searched next
+        if distG[x][y] is None: # if it's never been visited
             distG[x][y] = total_risk
         else:
             continue
@@ -48,7 +50,7 @@ def UCS(G, n_tiles):
 
 
 G = []
-for line in open("test.txt", 'r').read().split("\n"):
+for line in open("input.txt", 'r').read().split("\n"):
     G.append([int(c) for c in line])
 
 
