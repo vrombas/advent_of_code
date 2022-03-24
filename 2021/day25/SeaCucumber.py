@@ -1,3 +1,6 @@
+# runtime on m1: 7s
+# runtime on i5 7500: 3s
+
 from time import time
 
 
