@@ -1,5 +1,5 @@
 # runtime on m1: 7s
-# runtime on i5 7500: 3s
+# runtime on i5 7500, 1050ti: 3s
 
 from time import time
 
@@ -45,9 +45,9 @@ while change:
 
     M = newM
 
-    # print(F"Step: {cnt}")
-    # for line in M:
-    #     print("".join(line))
-    # print()
+    print(F"Step: {cnt}")
+    for line in M:
+        print("".join(line))
+    print()
 print(time() - start_time)
 print(F"Step: {cnt}")
