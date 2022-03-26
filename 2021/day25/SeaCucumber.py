@@ -1,6 +1,5 @@
 # runtime on m1: 7s
 # runtime on i5 7500, 1050ti: 3s
-
 from time import time
 
 
@@ -11,7 +10,6 @@ for line in open("input.txt", 'r').read().split("\n"):
 start_time = time()
 R = len(M)
 C = len(M[0])
-# print(M)
 
 change = True
 cnt = 0
@@ -25,6 +23,7 @@ while change:
     newM = [[M[r][c] for c in range(C)] for r in range(R)]
     change = False
     cnt += 1
+
     for r in range(R):
         for c in range(C):
             if M[r][c] == ">":
@@ -34,7 +33,8 @@ while change:
                     change = True
 
     M = newM
-    newM = [[M[r][c] for c in range(C)] for r in range(R)]
+    newM = [[M[r][c] for c in range(C)] for r in range(R)]  # deep copy is needed bc 2D array
+
     for r in range(R):
         for c in range(C):
             if M[r][c] == "v":
