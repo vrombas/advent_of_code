@@ -3,10 +3,8 @@ def solve():
     y_max = 0
     for dx in range(1000):
         for dy in range(-1000, 1000):
-            count += simulate(dx, dy)
+            count += int(simulate(dx, dy) > 0)
             # y_max = max(y_max, simulate(dx, dy))
-
-
 
     return count, y_max
 
@@ -35,7 +33,7 @@ def simulate(DX, DY):
     if hit:
         return y_max
 
-    return 0
+    return -1
 
 def sign(x):
     return (int(x > 0) - int(x < 0))
