@@ -1,10 +1,14 @@
 
 input = [int(x) for x in open("input.txt", 'r')]
 
-N = len(input)
 
-for i in range(N-2):
-    for j in range(i+1, N-1):
-        for k in range(i+2, N):
-            if input[i] + input[j] + input[k] == 2020:
-                print(input[i] * input[j] * input[k])
+def day1(input):
+    N = len(input)
+    for i in range(N):
+        for j in range(N):
+            for k in range(N):
+                if i != j != k:
+                    if input[i] + input[j] + input[k] == 2020:
+                        return input[i] * input[j] * input[k]
+
+print(day1(input))
