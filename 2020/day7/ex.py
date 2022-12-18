@@ -1,10 +1,11 @@
-def main():
-    def rec(timer, cnt):
-        if timer == 0:
-            return cnt
-        return rec(timer-1, cnt+1)
+cnt = 0
 
-    print(rec(6, 0))
+def rec(timer):
+    if timer == 0:
+        return
+    global cnt
+    cnt += 1
+    return rec(timer-1)
 
-
-main()
+rec(6)
+print(cnt)

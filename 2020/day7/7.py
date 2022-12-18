@@ -1,7 +1,7 @@
 from collections import defaultdict
-parents = defaultdict(list)
-bag_cnt = defaultdict(int)
 
+parents = defaultdict(list)
+contents = defaultdict(list)
 
 for l in open("input.txt"):
     line = l.strip()
@@ -13,21 +13,26 @@ for l in open("input.txt"):
         if bag == "no other bags":
             continue
 
-        num = int(bag[:bag.find(" ")].strip())
+        cnt = int(bag[:bag.find(" ")].strip())
         bag_id = bag[bag.find(" "):].strip().rstrip("s")
-        bag_cnt[parent] += num
+
+        # list of tuples wth cnt and bag_id
+        contents[parent].append((cnt, bag_id))
 
         parents[bag_id].append(parent)
+
+# print(parents)
+# print(" ")
+# print(bag_cnt)
 
 for x in parents.items():
     pass
 
-# complete>
-
-query = "shiny gold bag"
+# start bfs from shiny gold bag
+query = "shiny gold bag" 
 visited = set()
-# visited = set([query])
 Q = [query]
+
 while Q:
     child = Q.pop()
     for p in parents[child]:
@@ -35,22 +40,15 @@ while Q:
             Q.append(p)
         visited.add(p)
 
-
-# part 1
+print("part 1")
 print(len(visited))
-# TODO
-# part 2
 
-assert False 
-# TODO 
-# recursive function there to check all parent bags and add to cnt
-def rec_search(bag, visited):
-    ps = parents.get(bag, [])
-    for p in ps:
-        visited.add(p)
-    print(visited)
-    for p in ps:
-        visited = rec_search(p, visited)
-    return visited
+def rec_total(query):
+    tot = 1
+    for cnt, bag in contents[query]:
+        tot += cnt * rec_total(bag)
+    return tot
 
-print(len(rec_search("shiny gold bag", set())))
+print("part 2")
+# subtract 1 bc of using tot = 1 as the base value
+print(rec_total(query)-1)
