@@ -1,2 +1,2 @@
-# advent_of_code2021
-My advent of code solutions in python
+# Advent of Code 2021-22
+My [Advent of Code](https://adventofcode.com)solutions in Python
